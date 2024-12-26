@@ -1,0 +1,44 @@
+#compdef mc
+
+autoload -U is-at-least
+
+_mc() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" : \
+'-f[Overwrite destination if it exists]' \
+'--force[Overwrite destination if it exists]' \
+'--hard-link[Hard link file]' \
+'--symlink[Symbol link file]' \
+'--reflink[Ref link file Similar to hardlink except modify one doesn'\''t affect the other]' \
+'--verify[Verify hash of folder / file once copied]' \
+'--no-progress[Disable progress bar]' \
+'--no-keep-awake[Disable keep system awake while copy]' \
+'--keep-display-awake[Keep display awake while copy]' \
+'-h[Print help]' \
+'--help[Print help]' \
+'*::source -- Source file or directory to copy:_default' \
+':destination -- Destination file or directory:_default' \
+&& ret=0
+}
+
+(( $+functions[_mc_commands] )) ||
+_mc_commands() {
+    local commands; commands=()
+    _describe -t commands 'mc commands' commands "$@"
+}
+
+if [ "$funcstack[1]" = "_mc" ]; then
+    _mc "$@"
+else
+    compdef _mc mc
+fi
