@@ -56,14 +56,8 @@ mod tests {
         let args = Args {
             source: vec![temp_file.to_str().unwrap().to_string()],
             destination: temp_dir.path().to_str().unwrap().to_string(),
-            force: false,
-            no_progress: false,
-            verify: false,
-            symlink: false,
-            hard_link: false,
-            keep_display_awake: false,
             no_keep_awake: true,
-            reflink: false,
+            ..Default::default()
         };
 
         let result = ensure_valid_paths(&args);
@@ -77,13 +71,8 @@ mod tests {
             source: vec!["/non/existent/file.txt".to_string()],
             destination: "/tmp".to_string(),
             force: true,
-            no_progress: false,
-            verify: false,
-            symlink: false,
-            hard_link: false,
-            keep_display_awake: false,
             no_keep_awake: true,
-            reflink: false,
+            ..Default::default()
         };
 
         let result = ensure_valid_paths(&args);
@@ -114,13 +103,8 @@ mod tests {
             source: vec![temp_file.to_str().unwrap().to_string()],
             destination: destination_dir.clone(),
             force: true,
-            no_progress: false,
-            verify: false,
-            symlink: false,
-            hard_link: false,
-            keep_display_awake: false,
             no_keep_awake: true,
-            reflink: false,
+            ..Default::default()
         };
 
         // Ensure that the destination directory doesn't exist before the test

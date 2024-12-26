@@ -1,7 +1,7 @@
 use clap::Parser;
 
 /// Command-line utility for copying files or directories with optional recursion and overwriting.
-#[derive(Parser, Debug)]
+#[derive(Parser, Debug, Default)]
 #[command(about = "Copies files or directories with options for recursion and overwriting.")]
 pub struct Args {
     /// Source file or directory to copy

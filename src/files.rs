@@ -147,14 +147,10 @@ mod tests {
         let args = Args {
             force: true,
             no_progress: true,
-            symlink: false,
-            hard_link: false,
             destination: dest_file.to_str().unwrap().to_string(),
-            keep_display_awake: false,
             no_keep_awake: true,
             source: vec![source_file.to_str().unwrap().to_string()],
-            verify: false,
-            reflink: false,
+            ..Default::default()
         };
 
         // Perform the copy operation
@@ -187,14 +183,10 @@ mod tests {
         let args = Args {
             force: true,
             no_progress: true,
-            symlink: false,
-            hard_link: false,
             destination: dest_dir.to_str().unwrap().to_string(),
-            keep_display_awake: false,
             no_keep_awake: true,
             source: vec![source_dir.to_str().unwrap().to_string()],
-            verify: false,
-            reflink: false,
+            ..Default::default()
         };
 
         // Perform the copy operation
