@@ -1,6 +1,3 @@
-#[cfg(feature = "completions")]
-include!("src/cli.rs");
-
 fn main() {
     let hash = commit_hash();
     println!("cargo:rerun-if-env-changed=COMMIT_HASH");
@@ -19,6 +16,9 @@ fn commit_hash() -> String {
         .unwrap();
     String::from_utf8(output.stdout).unwrap()
 }
+
+#[cfg(feature = "completions")]
+include!("src/cli.rs");
 
 #[cfg(feature = "completions")]
 fn generate_completions() {
