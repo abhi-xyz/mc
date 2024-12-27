@@ -100,7 +100,7 @@ pub fn copy_file<P: AsRef<Path>>(
         #[cfg(unix)]
         std::os::unix::fs::symlink(source_path, destination_path)?;
         #[cfg(windows)]
-        std::os::windows::fs::symlink(source_path, destination_path)?;
+        std::os::windows::fs::symlink_file(source_path, destination_path)?;
     } else {
         let mut file_options = fs_extra::file::CopyOptions::new();
         file_options.overwrite = args.force;

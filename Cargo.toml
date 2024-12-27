@@ -35,8 +35,11 @@ tempfile = "3.14.0"
 
 [build-dependencies]
 clap = { version = "4.5.23", features = ["derive"] }
-clap_complete = "4.5.40"
-clap_complete_nushell = "4.5.4"
+clap_complete = { version = "4.5.40", optional = true }
+clap_complete_nushell = { version = "4.5.4", optional = true }
+
+[features]
+completions = ["dep:clap_complete", "dep:clap_complete_nushell"]
 
 # The profile that 'dist' will build with
 [profile.dist]
